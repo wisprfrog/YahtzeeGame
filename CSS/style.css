@@ -1,0 +1,162 @@
+.in_row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.in_col{ 
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+body{
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    align-items: start;
+}
+
+#titulo{
+    width: 5%;
+    height: 100%;
+    background-color: #030303;
+    justify-content: center;
+}
+
+#titulo h1{
+    margin: 0;
+    transform: rotate(-90deg);
+    text-transform: uppercase;
+    color: white;
+    font: 3vw "Titillium Web", sans-serif;
+}
+
+#mesa_juego{
+    width: 95%;
+    height: 100%;
+    background-color: #0f6d39;
+    padding: 20px 60px 20px 40px;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+
+#tablero_juego{
+    width: 50%;
+    height: 100%;
+}
+
+.jugador{
+   width: fit-content;
+   height: 20%;
+   column-gap: 20px;
+   align-items: center;
+}
+
+.jugador img{
+    width: 60px;
+    border-radius: 5%;
+}
+
+.jugador h4{
+    margin: 0;
+    color: white;
+    font: 25px "Titillium Web", sans-serif;
+}
+
+.jugador h6{
+    margin: 0;
+    color: white;
+    font: 13px "Titillium Web", sans-serif;
+}
+
+button{
+    --fondo: #fffa68d6;
+    background-color: var(--fondo);
+    border: 1px var(--fondo) solid;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font: 12px "Kanit", sans-serif;
+    cursor: pointer;
+    width: fit-content;
+    height: fit-content;
+    padding: 2px 7px;
+}
+
+button:hover{
+    transition: 0.3s;
+    transform: scale(1.1);
+}
+
+#dados{
+    width: 100%;
+    height: fit-content;
+    justify-content: center;
+    flex-wrap: nowrap;
+    column-gap: 30px;
+}
+
+#dados div{
+    width: 50px;
+    height: 50px;
+}
+
+#dados img{
+    transition: 0.5s;
+    height: 50px;
+}
+
+input[type="checkbox"]{
+    width: 50px;
+    height: 50px;
+    margin: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    position: relative;
+    cursor: pointer;
+    z-index: 1;
+}
+
+label{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    width: 50px;
+    height: 50px;
+    position: relative;
+    bottom: 53px;
+}
+
+#marcador_juego{
+    width: 100%;
+    height: 100%;
+    border-spacing: 0;
+    color: white;
+    font: 12px "Titillium Web", sans-serif;
+    border-top: white solid 1px;
+    border-left: white solid 1px;
+}
+
+#marcador_juego th, #marcador_juego td{
+    width: 25%;
+    height: 5%;
+    border-right: white solid 1px;
+    border-bottom: white solid 1px;
+    text-align: center;
+}
+
+#marcador_juego td i{
+    font-size: 12px;
+    text-align: center;
+    font-style: normal;
+}
+
+#marcador_juego td i i{
+    font-size: 17px;
+    text-align: center;
+    font-style: normal;
+}

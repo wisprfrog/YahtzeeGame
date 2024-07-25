@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap"
+        rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="CSS/style.css">
+
+    <title>Yahtzee</title>
+</head>
+
+<body class="in_row">
+    <div class="in_col" id="titulo">
+        <h1>
+            Yahtzee!
+        </h1>
+    </div>
+    <div class="in_row" id="mesa_juego">
+        <div class="in_row" id="tablero_juego">
+            <div class="in_col" style="width: 75%; height: 100%; align-items: center;">
+                <div class="in_row" style="width: 80%; height: 20%; justify-content: space-evenly; align-items: center;">
+                    <div class="in_row jugador">
+                        <img src="https://i.pinimg.com/736x/e8/cb/50/e8cb5012f2a28027b71c5f6cd5afee44.jpg"
+                            alt="Icono jugador 1">
+                        
+                        <div class="in_col" style="row-gap: 5px;">
+                            <h4>
+                                Jugador 1
+                            </h4>
+                            <h6>
+                                Tirada número:
+                            </h6>
+                        </div>
+                    </div>
+                    <button id="boton_terminar_turno_j1">
+                        Terminar turno
+                    </button>
+                </div>
+                <div class="in_col"
+                    style="width: 100%; height: 60%; justify-content: center; align-items: center; row-gap: 30px; box-sizing: border-box; padding-top: 45px;">
+                                        
+                    <div class="in_row" id="dados">
+                        <div class="cajita_dado">
+                            <input type="checkbox" id="check_dado1" onclick="DOM_cambiar_opacidad_dado(1)" disabled style="cursor: default;">
+                            <label for="check_dado1">
+                                <img id="dado1" src="Imagenes/signo_interr.svg" alt="Signo de interrogación">
+                            </label>
+                        </div>
+
+                        <div class="cajita_dado">
+                            <input type="checkbox" id="check_dado2" onclick="DOM_cambiar_opacidad_dado(2)" disabled style="cursor: default;">
+                            <label for="check_dado2">
+                                <img id="dado2" src="Imagenes/signo_interr.svg" alt="Signo de interrogación">
+                            </label>
+                        </div>
+
+                        <div class="cajita_dado">
+                            <input type="checkbox" id="check_dado3" onclick="DOM_cambiar_opacidad_dado(3)" disabled style="cursor: default;">
+                            <label for="check_dado3">
+                                <img id="dado3" src="Imagenes/signo_interr.svg" alt="Signo de interrogación">
+                            </label>
+                        </div>
+
+                        <div class="cajita_dado">
+                            <input type="checkbox" id="check_dado4" onclick="DOM_cambiar_opacidad_dado(4)" disabled style="cursor: default;">
+                            <label for="check_dado4">
+                                <img id="dado4" src="Imagenes/signo_interr.svg" alt="Signo de interrogación">
+                            </label>
+                        </div>
+
+                        <div class="cajita_dado">
+                            <input type="checkbox" id="check_dado5" onclick="DOM_cambiar_opacidad_dado(5)" disabled style="cursor: default;">
+                            <label for="check_dado5">
+                                <img id="dado5" src="Imagenes/signo_interr.svg" alt="Signo de interrogación">
+                            </label>
+                        </div>
+
+                    </div>
+
+                    <div class="in_row" style="width: 100%; justify-content: space-evenly;">
+                        <button id="boton_reservar" onclick="DOM_reservar_dados()">
+                            Reservar dados seleccionados
+                        </button>
+                        <button id="boton_tirar" onclick="yahtzee_game.controlador_dados.tirar_dados()">
+                            Tirar dados
+                        </button>
+                    </div>
+                </div>
+
+                <div class="in_row" style="width: 80%; height: 20%; justify-content: space-evenly; align-items: center;">
+                    <div class="in_row jugador">
+                        <img src="https://th.bing.com/th/id/R.6038c4aa1ab50ea68c627c8ac5ff4dcd?rik=nKpDD7zFyC5kIg&pid=ImgRaw&r=0"
+                            alt="Icono jugador 2">
+                            <div class="in_col" style="justify-content: space-between; row-gap: 5px;">
+                                <h4>
+                                    Jugador 2
+                                </h4>
+                                <h6 style="display: none">
+                                    Tirada número:
+                                </h6>
+                            </div>
+                    </div>
+
+                    <button id="boton_terminar_turno_j2" style="display: none">
+                        Terminar turno
+                    </button>
+                </div>
+                <div>
+                    
+                </div>
+            </div>
+            <div class="in_col" style="width: 25%; height: 100%; align-items: center;">
+                <div class="in_col"
+                    style="width: 100%; height: 100%; justify-content: center; text-transform: uppercase; color: white; font: 25px 'Titillium Web', sans-serif;">
+                    Turno del <b>jugador</b>
+                </div>
+            </div>
+        </div>
+
+        <div class="in_row" style="width: 44%; height: 100%;">
+            <table id="marcador_juego">
+                <thead>
+                    <tr style="font-size: 15px;">
+                        <th>PUNTAJE MINIMO<br>PARA BONUS</th>
+                        <th>CÓMO ANOTAR</th>
+                        <th>JUGADOR 1</th>
+                        <th>JUGADOR 2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="box-sizing: border-box; padding-left: 7px; text-align:start;">
+                            Unos
+                            <i style="width: fit-content; height: fit-content; position: relative; left: 20px;">
+                                <i class="fa-solid fa-dice-one" style="color: #ffffff;"></i>
+                                <i class="fa-solid fa-dice-one" style="color: #ffffff;"></i>
+                                <i class="fa-solid fa-dice-one" style="color: #ffffff;"></i>
+                                = 3
+                            </i>
+
+
+                        </td>
+                        <td>Cuenta y suma los unos</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td style="box-sizing: border-box; padding-left: 7px; text-align:start;">
+                            Doses
+                            <i style="width: fit-content; height: fit-content; position: relative; left: 15px;">
+                                <i class="fa-solid fa-dice-two" style="color: #ffffff;"></i>
+                                <i class="fa-solid fa-dice-two" style="color: #ffffff;"></i>
+                                <i class="fa-solid fa-dice-two" style="color: #ffffff;"></i>
+                                = 6
+                            </i>
+                        </td>
+                        <td>Cuenta y suma los doses</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td style="box-sizing: border-box; padding-left: 7px; text-align:start;">
+                            Treses
+                            <i style="width: fit-content; height: fit-content; position: relative; left: 14px;">
+                                <i class="fa-solid fa-dice-three" style="color: #ffffff;"></i>
+                                <i class="fa-solid fa-dice-three" style="color: #ffffff;"></i>
+                                <i class="fa-solid fa-dice-three" style="color: #ffffff;"></i>
+                                = 9
+                            </i>
+                        </td>
+                        <td>Cuenta y sumos los treses</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td style="box-sizing: border-box; padding-left: 7px; text-align:start;">
+                            Cuatros
+                            <i style="width: fit-content; height: fit-content; position: relative; left: 8px;">
+                                <i class="fa-solid fa-dice-four" style="color: #ffffff;"></i>
+                                <i class="fa-solid fa-dice-four" style="color: #ffffff;"></i>
+                                <i class="fa-solid fa-dice-four" style="color: #ffffff;"></i>
+                                = 12
+                            </i>
+                        </td>
+                        <td>Cuenta y suma los cuatros</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td style="box-sizing: border-box; padding-left: 7px; text-align:start;">
+                            Cincos
+                            <i style="width: fit-content; height: fit-content; position: relative; left: 14px;">
+                                <i class="fa-solid fa-dice-five" style="color: #ffffff;"></i>
+                                <i class="fa-solid fa-dice-five" style="color: #ffffff;"></i>
+                                <i class="fa-solid fa-dice-five" style="color: #ffffff;"></i>
+                                = 15
+                            </i>
+                        </td>
+                        <td>Cuenta y suma los cincos</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td style="box-sizing: border-box; padding-left: 7px; text-align:start;">
+                            Seises
+                            <i style="width: fit-content; height: fit-content; position: relative; left: 14px;">
+                                <i class="fa-solid fa-dice-six" style="color: #ffffff;"></i>
+                                <i class="fa-solid fa-dice-six" style="color: #ffffff;"></i>
+                                <i class="fa-solid fa-dice-six" style="color: #ffffff;"></i>
+                                = 18
+                            </i>
+                        </td>
+                        <td>Cuenta y suma los seises</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td style="box-sizing: border-box; padding-left: 7px; text-align:start; font-size: 22px;">
+                            <b>TOTAL</b>
+                            <i style="position: relative; left: 45px;">63</i>
+                        </td>
+                        <td>
+                            <i class="fa-solid fa-arrow-right"
+                                style="color: #ffffff; font-size: 20px; padding-top: 3px;"></i>
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td style="box-sizing: border-box; padding-left: 7px; text-align:start; font-size: 22px;">
+                            <b>Bonus</b>
+                            <i style="position: relative; left: 10px;">63 o mayor</i>
+                        </td>
+                        <td>Suma 35</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td style="box-sizing: border-box; padding-left: 7px; text-align:start; font-size: 22px;">
+                            <b>TOTAL</b>
+                            <i style="position: relative; left: 5px;">Mit. superior</i>
+                        </td>
+                        <td>
+                            <i class="fa-solid fa-arrow-right"
+                                style="color: #ffffff; font-size: 20px; padding-top: 3px;"></i>
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td style="box-sizing: border-box; padding-left: 7px; text-align:start;">3 de un tipo</td>
+                        <td>Suma de todos los dados</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td style="box-sizing: border-box; padding-left: 7px; text-align:start;">4 de un tipo</td>
+                        <td>Suma de todos los dados</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td style="box-sizing: border-box; padding-left: 7px; text-align:start;">
+                            Full House
+                        </td>
+                        <td>Suma 25</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td style="box-sizing: border-box; padding-left: 7px; text-align:start;">
+                            Esc. corta
+                            <i style="font-size: 9px; position: relative; left: 10px;">(Secuencia de 4)</i>
+                        </td>
+                        <td>Suma 30</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td style="box-sizing: border-box; padding-left: 7px; text-align:start;">
+                            Esc. larga
+                            <i style="font-size: 9px; position: relative; left: 11px;">(Secuencia de 5)</i>
+                        </td>
+                        <td>Suma 40</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td style="box-sizing: border-box; padding-left: 7px; text-align:start; font-size: 17px;">
+                            <b>YAHTZEE</b>
+                            <i style="font-size: 9px; position: relative; left: 10px;">5 de un tipo</i>
+                        </td>
+                        <td>Suma 50</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td style="box-sizing: border-box; padding-left: 7px; text-align:start;">Chance</td>
+                        <td>Suma de los 5 dados</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td style="box-sizing: border-box; padding-left: 7px; text-align:start; font-size: 22px;">
+                            <b>TOTAL</b>
+                            <i style="position: relative; left: 5px;">Mit. inferior</i>
+                        </td>
+                        <td>
+                            <i class="fa-solid fa-arrow-right"
+                                style="color: #ffffff; font-size: 20px; padding-top: 3px;"></i>
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td style="box-sizing: border-box; padding-left: 7px; text-align:start; font-size: 22px;">
+                            <b>TOTAL</b>
+                            <i style="position: relative; left: 5px;">Mit. superior</i>
+                        </td>
+                        <td>
+                            <i class="fa-solid fa-arrow-right"
+                                style="color: #ffffff; font-size: 20px; padding-top: 3px;"></i>
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td style="box-sizing: border-box; padding-left: 7px; text-align:start; font-size: 24px;">
+                            <b>TOTAL FINAL</b>
+                        </td>
+                        <td>
+                            <i class="fa-solid fa-arrow-right"
+                                style="color: #ffffff; font-size: 20px; padding-top: 3px;"></i>
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+<script src="sript.js"></script>
+
+</html>

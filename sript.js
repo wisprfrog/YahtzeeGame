@@ -6,6 +6,7 @@ class Yhatzee {
         this.dado4 = new Dado(4);
         this.dado5 = new Dado(5);
         this.controlador_dados = new ControladorDados([this.dado1, this.dado2, this.dado3, this.dado4, this.dado5]);
+        this.controlador_tiradas = new ControladorTiradas;
     }
 }
 
@@ -19,8 +20,6 @@ class Dado {
         this.valor = Math.ceil(Math.random() * 6);
     }
 }
-
-
 
 class ControladorDados {
     constructor(lista_dados) {
@@ -44,10 +43,33 @@ class ControladorDados {
             if (!this.reservados.includes(reservar)) this.reservados.push(reservar);
         });
     }
+
+    verificar_todos_reservados(){
+        if(this.reservados.length == 5){
+            DOM_desactivar_reserva_tirar();
+            DOM_des_reservar_dados();
+        }
+    }
 }
 
 class ControladorTiradas {
+    constructor(){
+        this.num_tiradas = 0;
+        this.jugador = 1;
+    }
 
+    contar_tirada(){
+        this.num_tiradas++;
+        
+        if(this.num_tiradas<=3){
+            DOM_aumentar_numero_tirada(this.jugador, this.num_tiradas);
+        }
+        if(this.num_tiradas>=3){
+            DOM_desactivar_reserva_tirar();
+            DOM_des_reservar_dados();
+        }
+        
+    }
 }
 
 var yahtzee_game = new Yhatzee;
@@ -85,5 +107,30 @@ function DOM_reservar_dados() {
         }
 
         yahtzee_game.controlador_dados.reservar_dados(lista);
+        yahtzee_game.controlador_dados.verificar_todos_reservados();
+    }
+}
+
+function DOM_aumentar_numero_tirada(jugador, tiro_num){
+    document.getElementById("tirada_j"+jugador).style.display = "block";
+    document.getElementById("tirada_j"+jugador).innerHTML = "Tirada número: " + tiro_num;
+}
+
+function DOM_desactivar_reserva_tirar(){
+    document.getElementById("boton_tirar").style.opacity = 0;
+    document.getElementById("boton_tirar").disabled = true;
+    document.getElementById("boton_tirar").style.cursor = "default";
+    
+    document.getElementById("boton_reservar").style.opacity = 0;
+    document.getElementById("boton_reservar").disabled = true;
+    document.getElementById("boton_reservar").style.cursor = "default";
+}
+
+function DOM_des_reservar_dados(){
+    for (let i = 1; i <= 5; i++) {
+        let dado = document.getElementById("check_dado" + i);
+            document.getElementById("dado" + i).style.opacity = 1;
+            dado.style.cursor = "default";
+            dado.disabled = true;
     }
 }

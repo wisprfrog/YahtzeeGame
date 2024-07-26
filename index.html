@@ -41,8 +41,8 @@
                             <h4>
                                 Jugador 1
                             </h4>
-                            <h6>
-                                Tirada número:
+                            <h6 id="tirada_j1">
+                                Tirada número: ?
                             </h6>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
                         <button id="boton_reservar" onclick="DOM_reservar_dados()">
                             Reservar dados seleccionados
                         </button>
-                        <button id="boton_tirar" onclick="yahtzee_game.controlador_dados.tirar_dados()">
+                        <button id="boton_tirar" onclick="yahtzee_game.controlador_dados.tirar_dados(); yahtzee_game.controlador_tiradas.contar_tirada()">
                             Tirar dados
                         </button>
                     </div>
@@ -109,8 +109,8 @@
                                 <h4>
                                     Jugador 2
                                 </h4>
-                                <h6 style="display: none">
-                                    Tirada número:
+                                <h6 id="tirada_j2" style="display: none">
+                                    Tirada número: ?
                                 </h6>
                             </div>
                     </div>

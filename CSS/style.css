@@ -44,8 +44,9 @@ body{
 }
 
 #tablero_juego{
-    width: 50%;
+    width: 52%;
     height: 100%;
+    justify-content: space-between;
 }
 
 .jugador{
@@ -131,6 +132,15 @@ label{
     bottom: 53px;
 }
 
+#dados input[type="checkbox"]:checked + label img{
+    transform: scale(1.3);
+}
+
+#dados input[type="checkbox"]:disabled + label img:not(img[src="Imagenes/signo_interr.svg"]){
+    opacity: 0.5;
+    transform: scale(1);
+}
+
 #marcador_juego{
     width: 100%;
     height: 100%;
@@ -159,4 +169,53 @@ label{
     font-size: 17px;
     text-align: center;
     font-style: normal;
+}
+
+.score_jugadores{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    justify-content: start;
+    align-items: center;
+    row-gap: 0;
+}
+
+.score_jugadores div{
+    width: 100%;
+    height: 5%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+}
+
+.score_jugadores div label{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: -10px;
+    color: white;
+    font: 12px "Titillium Web", sans-serif;
+    font-weight: bold;
+}
+
+.score_jugadores div input[type="radio"]{
+    /* appearance: none; */
+    width: 15px;
+    height: 15px;
+    z-index: 1;
+    position: relative;
+    top: 15px;
+    cursor: pointer;
+}
+
+.score_jugadores div input[type="radio"]:disabled{
+    cursor: default;
+}
+
+.score_jugadores div input[type="radio"]:checked + label{
+    transition: 0.2s;
+    color: #fffa68;
+    font-size: 15px;
 }

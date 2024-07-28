@@ -42,11 +42,11 @@
                                 Jugador 1
                             </h4>
                             <h6 id="tirada_j1">
-                                Tirada número: ?
+                                Tirada número ?
                             </h6>
                         </div>
                     </div>
-                    <button id="boton_terminar_turno_j1">
+                    <button id="boton_terminar_turno_j1" style="display: none">
                         Terminar turno
                     </button>
                 </div>
@@ -92,10 +92,10 @@
                     </div>
 
                     <div class="in_row" style="width: 100%; justify-content: space-evenly;">
-                        <button id="boton_reservar" onclick="DOM_reservar_dados()">
+                        <button id="boton_reservar" onclick="DOM_reservar_dados()" style="display: none;">
                             Reservar dados seleccionados
                         </button>
-                        <button id="boton_tirar" onclick="yahtzee_game.controlador_dados.tirar_dados(); yahtzee_game.controlador_tiradas.contar_tirada()">
+                        <button id="boton_tirar" onclick="yahtzee_game.controlador_dados.tirar_dados(); yahtzee_game.controlador_tiradas.contar_tirada(); boton_reservar.style.display = 'block'">
                             Tirar dados
                         </button>
                     </div>
@@ -110,7 +110,7 @@
                                     Jugador 2
                                 </h4>
                                 <h6 id="tirada_j2" style="display: none">
-                                    Tirada número: ?
+                                    Tirada número ?
                                 </h6>
                             </div>
                     </div>
@@ -119,19 +119,138 @@
                         Terminar turno
                     </button>
                 </div>
-                <div>
-                    
-                </div>
             </div>
-            <div class="in_col" style="width: 25%; height: 100%; align-items: center;">
-                <div class="in_col"
-                    style="width: 100%; height: 100%; justify-content: center; text-transform: uppercase; color: white; font: 25px 'Titillium Web', sans-serif;">
-                    Turno del <b>jugador</b>
+            <div class="in_col" style="width: 25%; height: 100%; justify-content: center; row-gap: 10px;">
+                <div class="in_row"
+                style="width: 100%; height: fit-content; justify-content: center; text-transform: uppercase; color: white; font: 25px 'Titillium Web', sans-serif;">
+                    Ronda <b id="num_ronda">número 13</b>
+                </div>
+                <div class="in_row"
+                    style="width: 100%; height: fit-content; justify-content: center; text-transform: uppercase; color: white; font: 12px 'Titillium Web', sans-serif;">
+                    Turno del&nbsp;&nbsp;<b id="turno_jugador">jugador 2</b>
                 </div>
             </div>
         </div>
 
-        <div class="in_row" style="width: 44%; height: 100%;">
+        <div class="in_row" style="width: 44%; height: 100%; position: relative;">
+            <div class="in_row" style="width: 50%; height: 93%; position: absolute; z-index: 1; right: 0; bottom: 0;">
+                <!-- Form jugador 1 -->
+                <div class="in_col" style="width: 50%; height: 100%;">
+                    <form class="in_col score_jugadores" id="score_form_j1">
+                        <div>
+                            <input disabled type="radio" onclick="DOM_seleccionar_score('score_unos_j1')" id="check_score_unos_j1" name="score_form_j1">
+                            <label for="check_score_unos_j1" id="score_unos_j1"></label>
+                        </div>
+                        <div>
+                            <input disabled type="radio" onclick="DOM_seleccionar_score('score_doses_j1')" id="check_score_doses_j1" name="score_form_j1">
+                            <label for="check_score_doses_j1" id="score_doses_j1"></label>
+                        </div>
+                        <div>
+                            <input disabled type="radio" onclick="DOM_seleccionar_score('score_treses_j1')" id="check_score_treses_j1" name="score_form_j1">
+                            <label for="check_score_treses_j1" id="score_treses_j1"></label>
+                        </div>
+                        <div>
+                            <input disabled type="radio" onclick="DOM_seleccionar_score('score_cuatros_j1')" id="check_score_cuatros_j1" name="score_form_j1">
+                            <label for="check_score_cuatros_j1" id="score_cuatros_j1"></label>
+                        </div>
+                        <div>
+                            <input disabled type="radio" onclick="DOM_seleccionar_score('score_cincos_j1')" id="check_score_cincos_j1" name="score_form_j1">
+                            <label for="check_score_cincos_j1" id="score_cincos_j1"></label>
+                        </div>
+                        <div>
+                            <input disabled type="radio" onclick="DOM_seleccionar_score('score_seises_j1')" id="check_score_seises_j1" name="score_form_j1">
+                            <label for="check_score_seises_j1" id="score_seises_j1"></label>
+                        </div>
+                        <div style="height: 17.2%;"></div>
+                        <div>
+                            <input disabled type="radio" onclick="DOM_seleccionar_score('score_trestipo_j1')" id="check_score_trestipo_j1" name="score_form_j1">
+                            <label for="check_score_trestipo_j1" id="score_trestipo_j1"></label>
+                        </div>
+                        <div>
+                            <input disabled type="radio" onclick="DOM_seleccionar_score('score_cuatrotipo_j1')" id="check_score_cuatrotipo_j1" name="score_form_j1">
+                            <label for="check_score_cuatrotipo_j1" id="score_cuatrotipo_j1"></label>
+                        </div>
+                        <div>
+                            <input disabled type="radio" onclick="DOM_seleccionar_score('score_fullhouse_j1')" id="check_score_fullhouse_j1" name="score_form_j1">
+                            <label for="check_score_fullhouse_j1" id="score_fullhouse_j1"></label>
+                        </div>
+                        <div>
+                            <input disabled type="radio" onclick="DOM_seleccionar_score('score_esccorta_j1')" id="check_score_esccorta_j1" name="score_form_j1">
+                            <label for="check_score_esccorta_j1" id="score_esccorta_j1"></label>
+                        </div>
+                        <div>
+                            <input disabled type="radio" onclick="DOM_seleccionar_score('score_esclarga_j1')" id="check_score_esclarga_j1" name="score_form_j1">
+                            <label for="check_score_esclarga_j1" id="score_esclarga_j1"></label>
+                        </div>
+                        <div>
+                            <input disabled type="radio" onclick="DOM_seleccionar_score('score_yahtzee_j1')" id="check_score_yahtzee_j1" name="score_form_j1">
+                            <label for="check_score_yahtzee_j1" id="score_yahtzee_j1"></label>
+                        </div>
+                        <div>
+                            <input disabled type="radio" onclick="DOM_seleccionar_score('score_chance_j1')" id="check_score_chance_j1" name="score_form_j1">
+                            <label for="check_score_chance_j1" id="score_chance_j1"></label>
+                        </div>
+                    </form>
+                </div>
+                <!-- Form jugador 2 -->
+                <div class="in_col" style="width: 50%; height: 100%;">
+                    <form class="in_col score_jugadores" id="score_form_j2">
+                        <div>
+                            <input disabled type="radio" onclick="DOM_seleccionar_score('score_unos_j2')" id="check_score_unos_j2" name="score_form_j2">
+                            <label for="check_score_unos_j2" id="score_unos_j2"></label>
+                        </div>
+                        <div>
+                            <input disabled type="radio" onclick="DOM_seleccionar_score('score_doses_j2')" id="check_score_doses_j2" name="score_form_j2">
+                            <label for="check_score_doses_j2" id="score_doses_j2"></label>
+                        </div>
+                        <div>
+                            <input disabled type="radio" onclick="DOM_seleccionar_score('score_treses_j2')" id="check_score_treses_j2" name="score_form_j2">
+                            <label for="check_score_treses_j2" id="score_treses_j2"></label>
+                        </div>
+                        <div>
+                            <input disabled type="radio" onclick="DOM_seleccionar_score('score_cuatros_j2')" id="check_score_cuatros_j2" name="score_form_j2">
+                            <label for="check_score_cuatros_j2" id="score_cuatros_j2"></label>
+                        </div>
+                        <div>
+                            <input disabled type="radio" onclick="DOM_seleccionar_score('score_cincos_j2')" id="check_score_cincos_j2" name="score_form_j2">
+                            <label for="check_score_cincos_j2" id="score_cincos_j2"></label>
+                        </div>
+                        <div>
+                            <input disabled type="radio" onclick="DOM_seleccionar_score('score_seises_j2')" id="check_score_seises_j2" name="score_form_j2">
+                            <label for="check_score_seises_j2" id="score_seises_j2"></label>
+                        </div>
+                        <div style="height: 17.2%;"></div>
+                        <div>
+                            <input disabled type="radio" onclick="DOM_seleccionar_score('score_trestipo_j2')" id="check_score_trestipo_j2" name="score_form_j2">
+                            <label for="check_score_trestipo_j2" id="score_trestipo_j2"></label>
+                        </div>
+                        <div>
+                            <input disabled type="radio" onclick="DOM_seleccionar_score('score_cuatrotipo_j2')" id="check_score_cuatrotipo_j2" name="score_form_j2">
+                            <label for="check_score_cuatrotipo_j2" id="score_cuatrotipo_j2"></label>
+                        </div>
+                        <div>
+                            <input disabled type="radio" onclick="DOM_seleccionar_score('score_fullhouse_j2')" id="check_score_fullhouse_j2" name="score_form_j2">
+                            <label for="check_score_fullhouse_j2" id="score_fullhouse_j2"></label>
+                        </div>
+                        <div>
+                            <input disabled type="radio" onclick="DOM_seleccionar_score('score_esccorta_j2')" id="check_score_esccorta_j2" name="score_form_j2">
+                            <label for="check_score_esccorta_j2" id="score_esccorta_j2"></label>
+                        </div>
+                        <div>
+                            <input disabled type="radio" onclick="DOM_seleccionar_score('score_esclarga_j2')" id="check_score_esclarga_j2" name="score_form_j2">
+                            <label for="check_score_esclarga_j2" id="score_esclarga_j2"></label>
+                        </div>
+                        <div>
+                            <input disabled type="radio" onclick="DOM_seleccionar_score('score_yahtzee_j2')" id="check_score_yahtzee_j2" name="score_form_j2">
+                            <label for="check_score_yahtzee_j2" id="score_yahtzee_j2"></label>
+                        </div>
+                        <div>
+                            <input disabled type="radio" onclick="DOM_seleccionar_score('score_chance_j2')" id="check_score_chance_j2" name="score_form_j2">
+                            <label for="check_score_chance_j2" id="score_chance_j2"></label>
+                        </div>
+                    </form>
+                </div>
+            </div>
             <table id="marcador_juego">
                 <thead>
                     <tr style="font-size: 15px;">
@@ -237,8 +356,8 @@
                             <i class="fa-solid fa-arrow-right"
                                 style="color: #ffffff; font-size: 20px; padding-top: 3px;"></i>
                         </td>
-                        <td></td>
-                        <td></td>
+                        <td id="score_total_uno_seis_j1" style="font-weight: bold;"></td>
+                        <td  id="score_total_uno_seis_j2" style="font-weight: bold;"></td>
                     </tr>
                     <tr>
                         <td style="box-sizing: border-box; padding-left: 7px; text-align:start; font-size: 22px;">
@@ -246,8 +365,8 @@
                             <i style="position: relative; left: 10px;">63 o mayor</i>
                         </td>
                         <td>Suma 35</td>
-                        <td></td>
-                        <td></td>
+                        <td id="score_bonus_j1" style="font-weight: bold;"></td>
+                        <td id="score_bonus_j2" style="font-weight: bold;"></td>
                     </tr>
                     <tr>
                         <td style="box-sizing: border-box; padding-left: 7px; text-align:start; font-size: 22px;">
@@ -258,8 +377,8 @@
                             <i class="fa-solid fa-arrow-right"
                                 style="color: #ffffff; font-size: 20px; padding-top: 3px;"></i>
                         </td>
-                        <td></td>
-                        <td></td>
+                        <td class="score_total_mit_superior_j1" style="font-weight: bold;"></td>
+                        <td class="score_total_mit_superior_j2" style="font-weight: bold;"></td>
                     </tr>
                     <tr>
                         <td style="box-sizing: border-box; padding-left: 7px; text-align:start;">3 de un tipo</td>
@@ -323,8 +442,8 @@
                             <i class="fa-solid fa-arrow-right"
                                 style="color: #ffffff; font-size: 20px; padding-top: 3px;"></i>
                         </td>
-                        <td></td>
-                        <td></td>
+                        <td id="score_total_mit_inferior_j1" style="font-weight: bold;"></td>
+                        <td id="score_total_mit_inferior_j2" style="font-weight: bold;"></td>
                     </tr>
                     <tr>
                         <td style="box-sizing: border-box; padding-left: 7px; text-align:start; font-size: 22px;">
@@ -335,8 +454,8 @@
                             <i class="fa-solid fa-arrow-right"
                                 style="color: #ffffff; font-size: 20px; padding-top: 3px;"></i>
                         </td>
-                        <td></td>
-                        <td></td>
+                        <td class="score_total_mit_superior_j1" style="font-weight: bold;"></td>
+                        <td class="score_total_mit_superior_j2" style="font-weight: bold;"></td>
                     </tr>
                     <tr>
                         <td style="box-sizing: border-box; padding-left: 7px; text-align:start; font-size: 24px;">
@@ -346,8 +465,8 @@
                             <i class="fa-solid fa-arrow-right"
                                 style="color: #ffffff; font-size: 20px; padding-top: 3px;"></i>
                         </td>
-                        <td></td>
-                        <td></td>
+                        <td id="score_total_final_j1" style="font-weight: bold;"></td>
+                        <td id="score_total_final_j2" style="font-weight: bold;"></td>
                     </tr>
                 </tbody>
             </table>

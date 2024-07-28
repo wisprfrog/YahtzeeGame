@@ -72,6 +72,13 @@ class ControladorTiradas {
     }
 }
 
+class ControladorTurno{
+    constructor(){
+        this.num_jugadores = 2;
+
+    }
+}
+
 var yahtzee_game = new Yhatzee;
 
 //Modifican/utilizan el DOM
@@ -79,16 +86,6 @@ function DOM_cambiar_valor_dado(valor, id){
     document.getElementById("check_dado" + id).style.cursor = "pointer";
     document.getElementById("check_dado" + id).disabled = false;
     document.getElementById("dado" + id).src = "Imagenes/dado_numero" + valor + ".svg";
-}
-
-function DOM_cambiar_opacidad_dado(numero_dado) {
-    var dado = document.getElementById("dado" + numero_dado);
-    if (dado.getAttribute("src") != "Imagenes/signo_interr.svg") {
-        var elemento = document.getElementById("check_dado" + numero_dado);
-
-        if (elemento.checked) dado.style.scale = 1.3;
-        else dado.style.scale = 1;
-    }
 }
 
 function DOM_reservar_dados() {
@@ -113,7 +110,7 @@ function DOM_reservar_dados() {
 
 function DOM_aumentar_numero_tirada(jugador, tiro_num){
     document.getElementById("tirada_j"+jugador).style.display = "block";
-    document.getElementById("tirada_j"+jugador).innerHTML = "Tirada número: " + tiro_num;
+    document.getElementById("tirada_j"+jugador).innerHTML = "Tirada número " + tiro_num;
 }
 
 function DOM_desactivar_reserva_tirar(){
@@ -134,3 +131,11 @@ function DOM_des_reservar_dados(){
             dado.disabled = true;
     }
 }
+
+var score_ya_seleccionado = null;
+
+function DOM_seleccionar_score(label_id){
+    score_ya_seleccionado = document.getElementById(label_id);
+}
+
+// #15ff00 color para aniadidos

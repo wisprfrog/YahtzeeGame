@@ -209,14 +209,23 @@ class ControladorScoreJugador {
 
             for (let i = 1; i <= 6; i++) {
                 if (i >= 1 && i <= 4) {
-                    esc_index1 = esc_index1 & this.cubeta[i];
+                    if(i == 1 && this.cubeta[i] == 0) esc_index1 = false;
+                    if(i == 2 && this.cubeta[i] == 0 && esc_index1) esc_index1 = false;
+                    if(i == 3 && this.cubeta[i] == 0 && esc_index1) esc_index1 = false;
+                    if(i == 4 && this.cubeta[i] == 0 && esc_index1) esc_index1 = false;
                 }
                 if (i >= 2 && i <= 5) {
-                    esc_index2 = esc_index2 & this.cubeta[i];
+                    if(i == 2 && this.cubeta[i] == 0) esc_index2 = false;
+                    if(i == 3 && this.cubeta[i] == 0 && esc_index2) esc_index2 = false;
+                    if(i == 4 && this.cubeta[i] == 0 && esc_index2) esc_index2 = false;
+                    if(i == 5 && this.cubeta[i] == 0 && esc_index2) esc_index2 = false;
                 }
 
                 if (i >= 3 && i <= 6) {
-                    esc_index3 = esc_index3 & this.cubeta[i];
+                    if(i == 3 && this.cubeta[i] == 0) esc_index3 = false;
+                    if(i == 4 && this.cubeta[i] == 0 && esc_index3) esc_index3 = false;
+                    if(i == 5 && this.cubeta[i] == 0 && esc_index3) esc_index3 = false;
+                    if(i == 6 && this.cubeta[i] == 0 && esc_index3) esc_index3 = false;
                 }
             }
 
@@ -229,13 +238,21 @@ class ControladorScoreJugador {
         if (this.esc_larga == -1) {
             let esc_index1 = true, esc_index2 = true;
 
-            for (let i = 1; i <= 6; i++) {
+            for (let i = 1; i <= 6; i++){
                 if (i >= 1 && i <= 5) {
-                    esc_index1 = esc_index1 & this.cubeta[i];
+                    if(i == 1 && this.cubeta[i] == 0) esc_index1 = false;
+                    if(i == 2 && this.cubeta[i] == 0 && esc_index1) esc_index1 = false;
+                    if(i == 3 && this.cubeta[i] == 0 && esc_index1) esc_index1 = false;
+                    if(i == 4 && this.cubeta[i] == 0 && esc_index1) esc_index1 = false;
+                    if(i == 5 && this.cubeta[i] == 0 && esc_index1) esc_index1 = false;
                 }
                 if (i >= 2 && i <= 6) {
-                    esc_index2 = esc_index2 & this.cubeta[i];
-                };
+                    if(i == 2 && this.cubeta[i] == 0) esc_index2 = false;
+                    if(i == 3 && this.cubeta[i] == 0 && esc_index2) esc_index2 = false;
+                    if(i == 4 && this.cubeta[i] == 0 && esc_index2) esc_index2 = false;
+                    if(i == 5 && this.cubeta[i] == 0 && esc_index2) esc_index2 = false;
+                    if(i == 6 && this.cubeta[i] == 0 && esc_index2) esc_index2 = false;
+                }
             }
 
             if (esc_index1 || esc_index2) {

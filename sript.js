@@ -11,11 +11,11 @@ class Yhatzee {
 
         this.controlador_ganador = new ControladorGanador;
     }
-    
-    retornar_lista_jugadores(){
+
+    retornar_lista_jugadores() {
         let lista_aux = [];
 
-        for(let i=1; i<this.lista_jugadores.length; i++){
+        for (let i = 1; i < this.lista_jugadores.length; i++) {
             lista_aux.push(this.lista_jugadores[i]);
         }
 
@@ -209,23 +209,23 @@ class ControladorScoreJugador {
 
             for (let i = 1; i <= 6; i++) {
                 if (i >= 1 && i <= 4) {
-                    if(i == 1 && this.cubeta[i] == 0) esc_index1 = false;
-                    if(i == 2 && this.cubeta[i] == 0 && esc_index1) esc_index1 = false;
-                    if(i == 3 && this.cubeta[i] == 0 && esc_index1) esc_index1 = false;
-                    if(i == 4 && this.cubeta[i] == 0 && esc_index1) esc_index1 = false;
+                    if (i == 1 && this.cubeta[i] == 0) esc_index1 = false;
+                    if (i == 2 && this.cubeta[i] == 0 && esc_index1) esc_index1 = false;
+                    if (i == 3 && this.cubeta[i] == 0 && esc_index1) esc_index1 = false;
+                    if (i == 4 && this.cubeta[i] == 0 && esc_index1) esc_index1 = false;
                 }
                 if (i >= 2 && i <= 5) {
-                    if(i == 2 && this.cubeta[i] == 0) esc_index2 = false;
-                    if(i == 3 && this.cubeta[i] == 0 && esc_index2) esc_index2 = false;
-                    if(i == 4 && this.cubeta[i] == 0 && esc_index2) esc_index2 = false;
-                    if(i == 5 && this.cubeta[i] == 0 && esc_index2) esc_index2 = false;
+                    if (i == 2 && this.cubeta[i] == 0) esc_index2 = false;
+                    if (i == 3 && this.cubeta[i] == 0 && esc_index2) esc_index2 = false;
+                    if (i == 4 && this.cubeta[i] == 0 && esc_index2) esc_index2 = false;
+                    if (i == 5 && this.cubeta[i] == 0 && esc_index2) esc_index2 = false;
                 }
 
                 if (i >= 3 && i <= 6) {
-                    if(i == 3 && this.cubeta[i] == 0) esc_index3 = false;
-                    if(i == 4 && this.cubeta[i] == 0 && esc_index3) esc_index3 = false;
-                    if(i == 5 && this.cubeta[i] == 0 && esc_index3) esc_index3 = false;
-                    if(i == 6 && this.cubeta[i] == 0 && esc_index3) esc_index3 = false;
+                    if (i == 3 && this.cubeta[i] == 0) esc_index3 = false;
+                    if (i == 4 && this.cubeta[i] == 0 && esc_index3) esc_index3 = false;
+                    if (i == 5 && this.cubeta[i] == 0 && esc_index3) esc_index3 = false;
+                    if (i == 6 && this.cubeta[i] == 0 && esc_index3) esc_index3 = false;
                 }
             }
 
@@ -238,20 +238,20 @@ class ControladorScoreJugador {
         if (this.esc_larga == -1) {
             let esc_index1 = true, esc_index2 = true;
 
-            for (let i = 1; i <= 6; i++){
+            for (let i = 1; i <= 6; i++) {
                 if (i >= 1 && i <= 5) {
-                    if(i == 1 && this.cubeta[i] == 0) esc_index1 = false;
-                    if(i == 2 && this.cubeta[i] == 0 && esc_index1) esc_index1 = false;
-                    if(i == 3 && this.cubeta[i] == 0 && esc_index1) esc_index1 = false;
-                    if(i == 4 && this.cubeta[i] == 0 && esc_index1) esc_index1 = false;
-                    if(i == 5 && this.cubeta[i] == 0 && esc_index1) esc_index1 = false;
+                    if (i == 1 && this.cubeta[i] == 0) esc_index1 = false;
+                    if (i == 2 && this.cubeta[i] == 0 && esc_index1) esc_index1 = false;
+                    if (i == 3 && this.cubeta[i] == 0 && esc_index1) esc_index1 = false;
+                    if (i == 4 && this.cubeta[i] == 0 && esc_index1) esc_index1 = false;
+                    if (i == 5 && this.cubeta[i] == 0 && esc_index1) esc_index1 = false;
                 }
                 if (i >= 2 && i <= 6) {
-                    if(i == 2 && this.cubeta[i] == 0) esc_index2 = false;
-                    if(i == 3 && this.cubeta[i] == 0 && esc_index2) esc_index2 = false;
-                    if(i == 4 && this.cubeta[i] == 0 && esc_index2) esc_index2 = false;
-                    if(i == 5 && this.cubeta[i] == 0 && esc_index2) esc_index2 = false;
-                    if(i == 6 && this.cubeta[i] == 0 && esc_index2) esc_index2 = false;
+                    if (i == 2 && this.cubeta[i] == 0) esc_index2 = false;
+                    if (i == 3 && this.cubeta[i] == 0 && esc_index2) esc_index2 = false;
+                    if (i == 4 && this.cubeta[i] == 0 && esc_index2) esc_index2 = false;
+                    if (i == 5 && this.cubeta[i] == 0 && esc_index2) esc_index2 = false;
+                    if (i == 6 && this.cubeta[i] == 0 && esc_index2) esc_index2 = false;
                 }
             }
 
@@ -548,6 +548,39 @@ class ControladorGanador {
 var yahtzee_game = new Yhatzee(2);
 
 //Modifican/utilizan el DOM
+function DOM_terminar_tirada() {
+    let jugador = yahtzee_game.controlador_turnos.retornar_turno_jugador();
+    yahtzee_game.controlador_dados.tirar_dados();
+
+    let lista_valores = yahtzee_game.controlador_dados.retornar_valores_actuales();
+
+    yahtzee_game.lista_jugadores[jugador].calc_cubeta(lista_valores);
+
+    //Si el usuario selecciono un puntaje pero tira, regresamos a la normalidad dicho puntaje
+    if (score_ya_seleccionado) {
+        score_ya_seleccionado.style.fontSize = '15px';
+        score_ya_seleccionado = null;
+        id_score_ya_seleccionado = null;
+    }
+
+    //Desmarcamos los dados seleccionados para devolverlos a su estado original
+    for (let i = 1; i <= 5; i++) {
+        document.getElementById('check_dado' + i).checked = false;
+    }
+
+    yahtzee_game.lista_jugadores[jugador].resetear_score_mostrar();
+    yahtzee_game.lista_jugadores[jugador].calcular_score_mostrar();
+
+    let term_turn = document.getElementById('boton_terminar_turno_j' + jugador);
+    let turn_jug = document.getElementById('turno_jugador');
+
+    term_turn.style.display = 'block';
+    boton_reservar.style.display = 'block';
+    turn_jug.style.color = 'white';
+
+    yahtzee_game.controlador_tiradas.contar_tirada();
+}
+
 function DOM_cambiar_valor_dado(valor, id) {
     document.getElementById("check_dado" + id).style.cursor = "pointer";
     document.getElementById("check_dado" + id).disabled = false;
@@ -668,6 +701,41 @@ function DOM_set_elementos_siguiente_jugador(jugador_anterior, jugador_actual) {
 function DOM_resetear_score(jugador, id) {
     document.getElementById("check_score_" + id + "_j" + jugador).disabled = true;
     document.getElementById("score_" + id + "_j" + jugador).innerHTML = '';
+}
+
+function DOM_terminar_turno() {
+    let jugador_anterior = yahtzee_game.controlador_turnos.retornar_turno_jugador();
+    yahtzee_game.controlador_turnos.finalizar_turno();
+    let jugador_actual = yahtzee_game.controlador_turnos.retornar_turno_jugador();
+
+    //Manipulamos el id para que sea correctamente leido por nuestra funcion miembro asignar_valor()
+    let id_enviar = id_score_ya_seleccionado.substring(6, id_score_ya_seleccionado.length - 3);
+    yahtzee_game.lista_jugadores[jugador_anterior].asignar_valor(id_enviar, Number(score_ya_seleccionado.innerHTML));
+    yahtzee_game.lista_jugadores[jugador_anterior].calc_bonus_mitsuperior();
+    yahtzee_game.lista_jugadores[jugador_anterior].calc_mitinferior();
+
+    //Regresamos a la normalidad el puntaje seleccionado
+    score_ya_seleccionado.style.fontSize = '15px';
+    score_ya_seleccionado.style.color = 'white';
+    let check_score_seleccionado = document.getElementById('check_' + id_score_ya_seleccionado);
+    check_score_seleccionado.disabled = true;
+
+    yahtzee_game.controlador_dados.resetear_lista_reservados();
+    DOM_set_elementos_siguiente_jugador(jugador_anterior, jugador_actual);
+    DOM_des_reservar_dados();
+
+    yahtzee_game.lista_jugadores[jugador_anterior].resetear_score_mostrar();
+    yahtzee_game.controlador_tiradas.resetear_tiradas_turno_jug(jugador_actual);
+    document.getElementById('score_form_j' + jugador_anterior).reset();
+
+    yahtzee_game.controlador_turnos.mostrar_ronda_real();
+    yahtzee_game.controlador_turnos.mostrar_turno_jugador();
+
+    if (yahtzee_game.controlador_turnos.finalizar_juego()) {
+        yahtzee_game.controlador_ganador.recibir_lista_jugadores(yahtzee_game.retornar_lista_jugadores());
+        let lista_ganadores = yahtzee_game.controlador_ganador.calcular_ganador();
+        DOM_terminar_juego(lista_ganadores);
+    }
 }
 
 function DOM_terminar_juego(ganador) {

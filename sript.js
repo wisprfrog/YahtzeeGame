@@ -1,4 +1,4 @@
-class Yhatzee {
+class Yahtzee {
     constructor(num_jugadores) {
         this.controlador_dados = new ControladorDados([new Dado(1), new Dado(2), new Dado(3), new Dado(4), new Dado(5)]);
         this.controlador_tiradas = new ControladorTiradas(num_jugadores);
@@ -10,6 +10,19 @@ class Yhatzee {
         }
 
         this.controlador_ganador = new ControladorGanador;
+    }
+
+    rellenar_score_jugadores(){
+        for (let i = 1; i < this.lista_jugadores.length; i++) {
+            this.lista_jugadores[i].llenar_ceros_score();
+        }
+    }
+
+    ultimo_calculo_score_jugadores(){
+        for (let i = 1; i < this.lista_jugadores.length; i++) {
+            this.lista_jugadores[i].calc_bonus_mitsuperior();
+            this.lista_jugadores[i].calc_mitinferior();
+        }
     }
 
     retornar_lista_jugadores() {
@@ -113,7 +126,7 @@ class ControladorScoreJugador {
         this.cubeta = [];
         this.unos = this.doses = this.treses = this.cuatros = this.cincos = this.seises = -1;
         this.bonus = this.tres_tipo = this.cuatro_tipo = this.full_house = -1;
-        this.esc_corta = this.esc_larga = this.yhatzee = this.chance = -1;
+        this.esc_corta = this.esc_larga = this.yahtzee = this.chance = -1;
         this.mit_superior = this.mit_inferior = this.tot_final = -1;
     }
 
@@ -261,20 +274,22 @@ class ControladorScoreJugador {
             }
         }
 
-        if (this.yhatzee == -1) {
-            let cumple = false, acum = 0;
+        let cumple = false, acum = 0;
 
-            for (let i = 1; i <= 6; i++) {
-                if (this.cubeta[i] == 5) {
-                    cumple = true;
-                    break;
-                }
+        for (let i = 1; i <= 6; i++) {
+            if (this.cubeta[i] == 5) {
+                cumple = true;
+                break;
             }
-
-            if (cumple) {
-                DOM_mostrar_dato_score(this.jugador, "yahtzee", 50);
-                minimo_uno = true;
-            }
+        }
+            
+        if (cumple && this.yahtzee == -1) {
+            DOM_mostrar_dato_score(this.jugador, "yahtzee", 50);
+            minimo_uno = true;
+        }
+        if(cumple && this.yahtzee > 0){
+            DOM_mostrar_dato_score(this.jugador, "yahtzee", this.yahtzee + 50);
+            minimo_uno = true;
         }
 
         if (this.chance == -1) {
@@ -368,7 +383,7 @@ class ControladorScoreJugador {
             if (!cumple) DOM_mostrar_dato_score(this.jugador, "esclarga", 0);
         }
 
-        if (this.yhatzee == -1) {
+        if (this.yahtzee == -1) {
             let cumple = false;
 
             for (let i = 1; i <= 6; i++) {
@@ -397,8 +412,8 @@ class ControladorScoreJugador {
     }
 
     calc_mitinferior() {
-        if (this.tres_tipo >= 0 && this.cuatro_tipo >= 0 && this.full_house >= 0 && this.esc_corta >= 0 && this.esc_larga >= 0 && this.yhatzee >= 0 && this.chance) {
-            this.mit_inferior = this.tres_tipo + this.cuatro_tipo + this.full_house + this.esc_corta + this.esc_larga + this.yhatzee + this.chance;
+        if (this.tres_tipo >= 0 && this.cuatro_tipo >= 0 && this.full_house >= 0 && this.esc_corta >= 0 && this.esc_larga >= 0 && this.yahtzee >= 0 && this.chance >= 0) {
+            this.mit_inferior = this.tres_tipo + this.cuatro_tipo + this.full_house + this.esc_corta + this.esc_larga + this.yahtzee + this.chance;
 
             DOM_mostrar_dato_score(this.jugador, "total_mit_inferior", this.mit_inferior);
         }
@@ -459,7 +474,7 @@ class ControladorScoreJugador {
                 break;
 
             case "yahtzee":
-                this.yhatzee = valor;
+                this.yahtzee = valor;
                 break;
 
             case "chance":
@@ -481,8 +496,86 @@ class ControladorScoreJugador {
         if (this.full_house == -1) DOM_resetear_score(this.jugador, "fullhouse");
         if (this.esc_corta == -1) DOM_resetear_score(this.jugador, "esccorta");
         if (this.esc_larga == -1) DOM_resetear_score(this.jugador, "esclarga");
-        if (this.yhatzee == -1) DOM_resetear_score(this.jugador, "yahtzee");
+        //Saque al yahtzee para hacer una funcion especifica para el
         if (this.chance == -1) DOM_resetear_score(this.jugador, "chance");
+    }
+
+    resetear_score_mostrar_yahtzee(id){
+        //Significa que el valor seleccionado y ya asignado (funcion DOM_terminar_turno) no fue el del yahtzee
+        if(this.yahtzee == -1){
+            DOM_resetear_score(this.jugador, "yahtzee");
+        }
+
+        //significa que el valor asignado fue el del yahtzee
+        //en ambos mandamos el valor de yahtzee para que lo deje establecido en la tabla 
+        if(id == "yahtzee"){
+            DOM_guardar_yahtzee(this.jugador, this.yahtzee); //En este caso el valor es el ya asignado
+        }
+        if(id != "yahtzee" && this.yahtzee > 0){
+            DOM_guardar_yahtzee(this.jugador, this.yahtzee); //En este caso es el valor anterior al calculo
+        }
+    }
+
+    llenar_ceros_score(){
+        if (this.unos == -1){
+            this.unos = 0;
+            DOM_llenar_score_ceros(this.jugador, "unos");
+        }
+        if (this.doses == -1){
+            this.doses = 0;
+            DOM_llenar_score_ceros(this.jugador, "doses");
+        }
+        if (this.treses == -1){
+            this.treses = 0;
+            DOM_llenar_score_ceros(this.jugador, "treses");
+        }
+        if (this.cuatros == -1){
+            this.cuatros = 0;
+            DOM_llenar_score_ceros(this.jugador, "cuatros");
+        }
+        if (this.cincos == -1){
+            this.cincos = 0;
+            DOM_llenar_score_ceros(this.jugador, "cincos");
+        }
+        if (this.seises == -1){
+            this.seises = 0;
+            DOM_llenar_score_ceros(this.jugador, "seises");
+        }
+
+        if (this.tres_tipo == -1){
+            this.tres_tipo = 0;
+            DOM_llenar_score_ceros(this.jugador, "trestipo");
+        }
+
+        if (this.cuatro_tipo == -1) {
+            this.cuatro_tipo = 0;
+            DOM_llenar_score_ceros(this.jugador, "cuatrotipo");
+        }
+
+        if (this.full_house == -1) { 
+            this.full_house = 0;
+            DOM_llenar_score_ceros(this.jugador, "fullhouse");
+        }
+
+        if (this.esc_corta == -1) {
+            this.esc_corta = 0;
+            DOM_llenar_score_ceros(this.jugador, "esccorta");
+        }
+
+        if (this.esc_larga == -1) {
+            this.esc_larga = 0;
+            DOM_llenar_score_ceros(this.jugador, "esclarga");
+        }
+
+        if (this.yahtzee == -1) {
+            this.yahtzee = 0;
+            DOM_llenar_score_ceros(this.jugador, "yahtzee");
+        }
+
+        if (this.chance == -1){
+            this.chance = 0;
+            DOM_llenar_score_ceros(this.jugador, "chance");
+        }
     }
 }
 
@@ -491,7 +584,8 @@ class ControladorTurno {
         this.num_jugadores = num_jugadores;
         this.turno_jugador = 0;
         this.turnos_totales = num_jugadores * 13;
-        this.turno_actual = 1;
+        // this.turno_actual = 1; 
+        this.turno_actual = 1; 
     }
 
     retornar_turno_jugador() {
@@ -530,22 +624,22 @@ class ControladorGanador {
     }
 
     calcular_ganador() {
-        let id_ganador = null, mayor_puntaje = 0;
+        let ganador = null, mayor_puntaje = 0;
         //Considerar empate
 
         this.lista.forEach(jugador_actual => {
             jugador_actual.calc_total();
             if (jugador_actual.tot_final > mayor_puntaje) {
                 mayor_puntaje = jugador_actual.tot_final;
-                id_ganador = jugador_actual;
+                ganador = jugador_actual;
             }
 
-            DOM_terminar_juego(id_ganador);
+            DOM_terminar_juego(ganador);
         });
     }
 }
 
-var yahtzee_game = new Yhatzee(2);
+var yahtzee_game = new Yahtzee(2);
 
 //Modifican/utilizan el DOM
 function DOM_terminar_tirada() {
@@ -669,6 +763,15 @@ function DOM_mostrar_dato_score(jugador, elemento, valor) {
     }
 }
 
+function DOM_llenar_score_ceros(jugador, elemento){
+    let input_id = "check_score_" + elemento + "_j" + jugador;
+    let label_id = "score_" + elemento + "_j" + jugador;
+
+    document.getElementById(label_id).innerHTML = "0";
+    document.getElementById(input_id).disabled = true;
+    document.getElementById(label_id).style.color = "white";
+}
+
 function DOM_mostrar_ronda(ronda_real) {
     document.getElementById("num_ronda").innerHTML = "número" + ronda_real;
 }
@@ -703,6 +806,12 @@ function DOM_resetear_score(jugador, id) {
     document.getElementById("score_" + id + "_j" + jugador).innerHTML = '';
 }
 
+function DOM_guardar_yahtzee(jugador, valor){
+    document.getElementById("check_score_yahtzee_j" + jugador).disabled = true;
+    document.getElementById("score_yahtzee_j" + jugador).innerHTML = valor;
+    document.getElementById("score_yahtzee_j" + jugador).style.color = 'white';
+}
+
 function DOM_terminar_turno() {
     let jugador_anterior = yahtzee_game.controlador_turnos.retornar_turno_jugador();
     yahtzee_game.controlador_turnos.finalizar_turno();
@@ -725,6 +834,7 @@ function DOM_terminar_turno() {
     DOM_des_reservar_dados();
 
     yahtzee_game.lista_jugadores[jugador_anterior].resetear_score_mostrar();
+    yahtzee_game.lista_jugadores[jugador_anterior].resetear_score_mostrar_yahtzee(id_enviar);
     yahtzee_game.controlador_tiradas.resetear_tiradas_turno_jug(jugador_actual);
     document.getElementById('score_form_j' + jugador_anterior).reset();
 
@@ -732,9 +842,10 @@ function DOM_terminar_turno() {
     yahtzee_game.controlador_turnos.mostrar_turno_jugador();
 
     if (yahtzee_game.controlador_turnos.finalizar_juego()) {
+        yahtzee_game.rellenar_score_jugadores();
+        yahtzee_game.ultimo_calculo_score_jugadores();
         yahtzee_game.controlador_ganador.recibir_lista_jugadores(yahtzee_game.retornar_lista_jugadores());
-        let lista_ganadores = yahtzee_game.controlador_ganador.calcular_ganador();
-        DOM_terminar_juego(lista_ganadores);
+        yahtzee_game.controlador_ganador.calcular_ganador();
     }
 }
 
